@@ -1,0 +1,31 @@
+<?php
+$host ="localhost";
+$user ="root";
+$pass ="";
+ $db ="";
+
+// 1.mysqli object oriented method for connection 
+ $connect  = new mysqli($host,$user,$pass);
+
+
+ if($connect->connect_error){
+    die("connection failed :" .$connect->connect_error);
+ }
+ else{
+     echo "connection succesfully done";
+ }
+
+//2.mysqli procedural method
+ $connect = mysqli_connect($host,$user,$pass)or die("failed");
+
+//3.pdo method
+try{
+$connect = new PDO("mysql:host=$host;dbname=$db",$user,$pass);
+$connect ->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+echo "connection done";
+}
+catch(PDOException $e){
+    echo "connection failed : ", $e->getMessage();
+}
+?>
+ 
